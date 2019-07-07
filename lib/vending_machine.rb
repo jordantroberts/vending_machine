@@ -27,11 +27,11 @@ class Vending_Machine
     ]
   end
 
-  def purchase(item, coins)
+  def purchase(item, coins = [])
     item = @items.find { |product| product[:name] == item }
     return "No such item" if item == nil
     return "Out of stock" if item[:quantity] == 0
-    return "Insufficient funds" if coins < item[:price]
+    return "Insufficient funds" if coins.reduce(:+) < item[:price]
     item[:quantity] -= 1
     #@change += item[:price]
     return @items
