@@ -5,8 +5,14 @@ describe Vending_Machine do
   let(:machine) { described_class.new }
 
   describe '#restock' do
-    it 'Items can be added to vending machine' do
+    it 'Products are reloaded' do
       expect(machine.restock).to include({:name=>"Cheetos", :price=>0.5, :quantity=>10})
+    end
+  end
+
+  describe '#reload_change' do
+    it 'Change is reloaded' do
+      expect(machine.reload_change).to include({:denomination=>2.00, :amount=>5})
     end
   end
 
