@@ -1,3 +1,5 @@
+require_relative 'products'
+
 class Vending_Machine
 
   attr_reader :change, :items
@@ -14,6 +16,14 @@ class Vending_Machine
             ]
   end
 
+  def update_stock(product, quantity)
+    hash = Hash.new
+    hash[:name] = product.name
+    hash[:quantity] = quantity
+    hash[:price] = product.price
+    @items << hash
+  end
+
   def reload_change
     @change = [
               { :denomination => 0.01, :amount => 5 },
@@ -27,8 +37,7 @@ class Vending_Machine
     ]
   end
 
-  def purchase(item, coins = [])
-
+  def dispense(item, coins = [])
     item = @items.find { |product| product[:name] == item }
     return "No such item" if item == nil
     return "Out of stock" if item[:quantity] == 0

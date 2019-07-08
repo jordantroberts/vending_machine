@@ -35,7 +35,7 @@ I would like to know what products and change are currently in my machine.
 
 As a vending machine owner
 So that I can keep the vending machine stocked up
-I would like to be able to reload the products and change when I want to. 
+I would like to be able to reload the products and change when I want to.
 ```
 
 ## Installing this program
@@ -45,6 +45,8 @@ I would like to be able to reload the products and change when I want to.
 3. Run `bundle install`
 
 ## Running this program
+
+1. From your command line, 
 
 ## Testing this program
 
