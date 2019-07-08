@@ -12,7 +12,7 @@ describe Vending_Machine do
 
   describe '#reload_change' do
     it 'Change is reloaded' do
-      expect(machine.reload_change).to include({:denomination=>2.00, :amount=>5})
+      expect(machine.reload_change).to include({:denomination=>1.00, :amount=>5})
     end
   end
 
@@ -49,14 +49,18 @@ describe Vending_Machine do
       machine.restock
       expect(machine.purchase("Cheetos", [0.10, 0.10])).to eq("Insufficient funds")
     end
-  end
 
-  describe '#give_change' do
     it 'Returns the fewest amount of coins due in change' do
       machine.reload_change
       machine.restock
-      machine.purchase("Pringles", [1.00, 0.10, 0.20])
-      expect(machine.give_change).to eq([0.5, 0.2])
+      expect(machine.purchase("Pringles", [1.00, 0.10, 0.20])).to eq([0.5, 0.2])
     end
+
+    xit 'Only returns the coins if they are in the machine' do
+      machine.reload_change
+      machine.restock
+      expect(machine.purchase("Pringles", [1.00, 1.00, 1.00, 1.00, 1.00, 1.00])).to eq([2.00, 1.00, 1.00, 1.00, 0.20, 0.20])
+    end
+
   end
 end

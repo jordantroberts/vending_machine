@@ -23,7 +23,7 @@ class Vending_Machine
               { :denomination => 0.20, :amount => 5 },
               { :denomination => 0.50, :amount => 5 },
               { :denomination => 1.00, :amount => 5 },
-              { :denomination => 2.00, :amount => 5 }
+              { :denomination => 2.00, :amount => 1 }
     ]
   end
 
@@ -36,38 +36,28 @@ class Vending_Machine
     item[:quantity] -= 1
     @change_due = coins.reduce(:+) - item[:price]
     update_money
-    return @items
+    give_change
   end
 
+  private
   def give_change
     change_calculated = []
     @change.reverse.each do |x|
-      money = @change_due / x[:denomination]
-      if money >= 1
-      n = money.to_i
+      coin_num = @change_due / x[:denomination]
+      if coin_num >= 1 && x[:amount] > 0
+      n = coin_num.to_i
       n.times { change_calculated << x[:denomination] }
-      @change_due -= (n * x[:denomination])
-      @change_due = @change_due.round(1)
+      x[:amount] -= n.floor
+      @change_due -= (n * x[:denomination]).round(1)
       end
     end
     return change_calculated
   end
 
-  private
   def update_money
     @coins.each do |coin|
       current_denomination = @change.find { |x| x[:denomination] == coin }
       current_denomination[:amount] += 1
     end
   end
-
-  def calculate_change
-
-  end
 end
-
-  # Iterate over hash backwards working out the mod
-  # e.g. 0.3/2 = 0 until it's 1 so 30/20 = 1
-  # store that 1 20p as change to do
-  # 30%20 = 10
-  # 10/2 ...
