@@ -108,13 +108,13 @@ Run `rspec` from the command line. This program has 100% test coverage! :)
 I initially spent time diagramming out how this program would run and what the Vending Machine class would be responsible for:
 
 <div align="center">
-    <img src="Plan1.jpg" width="600px"</img>
+    <img src="Plan1.png" width="600px"</img>
 </div>
 
 The most challenging aspect was making sure the most sensible denominations of change were given (i.e. the fewest coins) and only if those coins were available. When I reached this part, I spent time planning how I would like this method to work:
 
 <div align="center">
-    <img src="Plan2.jpg" width="600px"</img>
+    <img src="Plan2.png" width="600px"</img>
 </div>
 
 I initially decided to just have one class, the Vending Machine class. This is because I believe that a vending machine object would contain products and coins and it would be able to dispense and update these variables. I didn't think another class was necessary.
