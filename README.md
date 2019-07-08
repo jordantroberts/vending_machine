@@ -46,7 +46,29 @@ I would like to be able to reload the products and change when I want to.
 
 ## Running this program
 
-1. From your command line, 
+Example of how you would run this program from your command line:
+
+```
+> irb
+> require './lib/vending_machine'
+> machine = Vending_Machine.new
+```
+The machine should take an initial load of products and change:
+
+```
+> machine.reload_change
+> machine.restock
+
+```
+
+Vending machine is ready to go! You can purchase an item by calling the `dispense` method, passing the name of the item and the coins you insert as an argument. Here I want to buy a tube of Pringles with a 50p and a 20p.
+
+```
+> machine.dispense("Pringles", [0.50, 0.20])
+```
+
+
+
 
 ## Testing this program
 

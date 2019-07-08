@@ -12,7 +12,7 @@ describe Products do
 
   describe '#set_price' do
     it 'Sets the price of a new product' do
-      expect(product.set_price(0.70)).to eq 0.70
+      expect(product.set_price(70)).to eq 70
     end
   end
 end

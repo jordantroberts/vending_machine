@@ -11,8 +11,8 @@ class Vending_Machine
 
   def restock
     @items = [
-            { :name=>"Cheetos", :quantity=>10, :price=>0.50 },
-            { :name=>"Pringles", :quantity=>5, :price=>0.60 }
+            { :name=>"Cheetos", :quantity=>10, :price=>50 },
+            { :name=>"Pringles", :quantity=>5, :price=>60 }
             ]
   end
 
@@ -26,14 +26,14 @@ class Vending_Machine
 
   def reload_change
     @change = [
-              { :denomination => 0.01, :amount => 5 },
-              { :denomination => 0.02, :amount => 5 },
-              { :denomination => 0.05, :amount => 5 },
-              { :denomination => 0.10, :amount => 5 },
-              { :denomination => 0.20, :amount => 5 },
-              { :denomination => 0.50, :amount => 5 },
-              { :denomination => 1.00, :amount => 5 },
-              { :denomination => 2.00, :amount => 1 }
+              { :denomination => 1, :amount => 5 },
+              { :denomination => 2, :amount => 5 },
+              { :denomination => 5, :amount => 5 },
+              { :denomination => 10, :amount => 5 },
+              { :denomination => 20, :amount => 5 },
+              { :denomination => 50, :amount => 5 },
+              { :denomination => 100, :amount => 5 },
+              { :denomination => 200, :amount => 1 }
     ]
   end
 
@@ -50,7 +50,7 @@ class Vending_Machine
   private
 
   def calculate_change(coins, item)
-    change_due = coins.reduce(:+) - item[:price]
+    change_due = (coins.reduce(:+) - item[:price])
     give_change(change_due)
   end
 
