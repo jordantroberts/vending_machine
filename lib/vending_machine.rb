@@ -1,6 +1,6 @@
 class Vending_Machine
 
-  attr_reader :change, :items
+  attr_reader :change, :items, :coins
 
   def initialize(items = [], change = [])
     @items = items
@@ -28,12 +28,21 @@ class Vending_Machine
   end
 
   def purchase(item, coins = [])
+    @coins = coins
     item = @items.find { |product| product[:name] == item }
     return "No such item" if item == nil
     return "Out of stock" if item[:quantity] == 0
     return "Insufficient funds" if coins.reduce(:+) < item[:price]
     item[:quantity] -= 1
-    #@change += item[:price]
+    update_money
     return @items
   end
-end
+
+  private
+  def update_money
+    @coins.each do |coin|
+      current_denomination = @change.find { |x| x[:denomination] == coin }
+      current_denomination[:amount] += 1
+      end
+    end
+  end

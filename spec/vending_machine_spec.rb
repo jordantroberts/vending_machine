@@ -19,8 +19,16 @@ describe Vending_Machine do
   describe '#purchase' do
     it 'Items can be purchased from vending machine' do
       machine.restock
+      machine.reload_change
       machine.purchase("Cheetos", [0.50])
       expect(machine.restock).to include({:name=>"Cheetos", :price=>0.5, :quantity=>10})
+    end
+
+    it 'Adds money for item to vending machine change' do
+      machine.restock
+      machine.reload_change
+      machine.purchase("Pringles", [0.50, 0.10])
+      expect(machine.change).to include({:denomination=>0.50, :amount=>6})
     end
 
     it 'Does not allow a user to purchase non existent items' do
@@ -30,6 +38,7 @@ describe Vending_Machine do
 
     it 'Does not allow a user to purchase out of stock items' do
       machine.restock
+      machine.reload_change
       5.times do
         machine.purchase("Pringles", [0.50, 0.10])
       end
