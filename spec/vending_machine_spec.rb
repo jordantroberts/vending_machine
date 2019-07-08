@@ -50,4 +50,12 @@ describe Vending_Machine do
       expect(machine.purchase("Cheetos", [0.10, 0.10])).to eq("Insufficient funds")
     end
   end
+
+  describe '#give_change' do
+    it 'Returns the fewest amount of coins due in change' do
+      machine.reload_change
+      due = 0.7
+      expect(machine.give_change).to eq([0.5, 0.2])
+    end
+  end
 end
