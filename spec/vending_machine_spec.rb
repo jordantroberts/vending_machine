@@ -56,7 +56,7 @@ describe Vending_Machine do
       expect(machine.purchase("Pringles", [1.00, 0.10, 0.20])).to eq([0.5, 0.2])
     end
 
-    xit 'Only returns the coins if they are in the machine' do
+    it 'Only returns the coins if they are in the machine' do
       machine.reload_change
       machine.restock
       expect(machine.purchase("Pringles", [1.00, 1.00, 1.00, 1.00, 1.00, 1.00])).to eq([2.00, 1.00, 1.00, 1.00, 0.20, 0.20])

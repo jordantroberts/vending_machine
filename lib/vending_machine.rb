@@ -43,12 +43,15 @@ class Vending_Machine
   def give_change
     change_calculated = []
     @change.reverse.each do |x|
-      coin_num = @change_due / x[:denomination]
-      if coin_num >= 1 && x[:amount] > 0
-      n = coin_num.to_i
-      n.times { change_calculated << x[:denomination] }
-      x[:amount] -= n.floor
-      @change_due -= (n * x[:denomination]).round(1)
+      if x[:denomination] <= @change_due
+        coin_num = (@change_due / x[:denomination]).to_i
+        coin_num.times {
+          if x[:amount] > 0
+            x[:amount] -= 1
+            change_calculated << x[:denomination]
+            @change_due -= x[:denomination]
+          end
+        }
       end
     end
     return change_calculated
