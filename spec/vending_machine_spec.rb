@@ -38,7 +38,7 @@ describe Vending_Machine do
       expect(machine.change).to include({:denomination=>50, :amount=>6})
     end
 
-    it 'Does not allow a user to purchase non existent items' do
+    it 'Does not allow a user to purchase non-existent items' do
       machine.restock
       expect(machine.dispense("Quavers", [50])).to eq("No such item")
     end
@@ -55,6 +55,7 @@ describe Vending_Machine do
     it 'Informs a user if not enough money inserted' do
       machine.restock
       expect(machine.dispense("Cheetos", [10, 10])).to eq("Insufficient funds")
+      expect(machine.dispense("Pringles", [20, 10])).to eq("Insufficient funds")
     end
 
     it 'Returns the fewest amount of coins due in change' do
@@ -62,6 +63,7 @@ describe Vending_Machine do
       machine.restock
       expect(machine.dispense("Pringles", [100, 10, 20])).to eq([50, 20])
       expect(machine.dispense("Pringles", [50, 20])).to eq([10])
+      expect(machine.dispense("Cheetos", [200])).to eq([100, 50])
     end
 
     it 'Only returns the coins if they are in the machine' do

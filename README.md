@@ -78,7 +78,7 @@ The vending machine will return the correct amount of change in the fewest amoun
 
 I now have 10p left. I'll try and buy some Cheetos.
 ```
-> machine.dispense("Pringles", [10])
+> machine.dispense("Cheetos", [10])
 => "Insufficient funds"
 ```
 The vending machine tells me I don't have enough. Oh well.
@@ -117,9 +117,9 @@ The most challenging aspect was making sure the most sensible denominations of c
     <img src="Plan2.png" width="600px"</img>
 </div>
 
-I initially decided to just have one class, the Vending Machine class. This is because I believe that a vending machine object would contain products and coins and it would be able to dispense and update these variables. I didn't think another class was necessary.
+I initially decided to just have one class, the Vending Machine class. This is because I believe that a vending machine object would contain products and coins and it would be able to dispense and update these variables. I didn't think another class was necessary just at this stage.
 
-However, I later decided that I would like to implement an update_stock method so that new items could be added to the vending machine. I thought this would be a better in the real world if a vending machine owner were to sell this product and the stock wouldn't always be crisps. It might be vegan snacks, for example. I didn't think that the Vending Machine class should be responsible for creating these new items so I made a Product class so that new items can be inputted.
+However, I later decided that I would like to implement an update_stock method so that new items could be added to the vending machine. I thought this would be beneficial if a vending machine owner were to sell this product and the buyer wants to stock the vending machine with something other than crisps. I didn't think that the Vending Machine class should be responsible for creating these new items so I made a Product class so that new items can be inputted. This will also make the code easier to change if the products need to be updated at a later date.
 
 One other change I made was how I stored the denominations. I was storing these initially as decimals (e.g. 0.2 for 20p, 1.0 for £1 etc) but it became unnecessarily complex when doing the calculations, which I was doing in pence. Therefore I updated the hash so that the change is now stored as pence.
 
