@@ -1,6 +1,6 @@
 class Vending_Machine
 
-  attr_reader :change, :items, :coins, :change_due
+  attr_reader :change, :items, :coins
 
   def initialize(items = [], change = [])
     @items = items
@@ -34,22 +34,22 @@ class Vending_Machine
     return "Out of stock" if item[:quantity] == 0
     return "Insufficient funds" if coins.reduce(:+) < item[:price]
     item[:quantity] -= 1
-    @change_due = coins.reduce(:+) - item[:price]
+    change_due = coins.reduce(:+) - item[:price]
     update_money
-    give_change
+    give_change(change_due)
   end
 
   private
-  def give_change
+  def give_change(amount_due)
     change_calculated = []
     @change.reverse.each do |x|
-      if x[:denomination] <= @change_due
-        coin_num = (@change_due / x[:denomination]).to_i
+      if x[:denomination] <= amount_due
+        coin_num = (amount_due / x[:denomination]).to_i
         coin_num.times {
           if x[:amount] > 0
             x[:amount] -= 1
             change_calculated << x[:denomination]
-            @change_due -= x[:denomination]
+            amount_due -= x[:denomination]
           end
         }
       end
