@@ -34,12 +34,17 @@ class Vending_Machine
     return "Out of stock" if item[:quantity] == 0
     return "Insufficient funds" if coins.reduce(:+) < item[:price]
     item[:quantity] -= 1
-    change_due = coins.reduce(:+) - item[:price]
     update_money(coins)
-    give_change(change_due)
+    calculate_change(coins, item)
   end
 
   private
+
+  def calculate_change(coins, item)
+    change_due = coins.reduce(:+) - item[:price]
+    give_change(change_due)
+  end
+
   def give_change(amount_due)
     change_calculated = []
     @change.reverse.each do |x|
