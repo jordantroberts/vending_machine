@@ -58,7 +58,7 @@ class Vending_Machine
     change_calculated = []
     @change.reverse.each do |x|
       if x[:denomination] <= amount_due
-        coin_num = (amount_due / x[:denomination]).to_i
+        coin_num = (amount_due / x[:denomination])
         coin_num.times {
           if x[:amount] > 0
             x[:amount] -= 1

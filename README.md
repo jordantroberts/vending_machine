@@ -101,9 +101,32 @@ machine.update_stock(new_snack, 20)
 
 ## Testing this program
 
-Run `rspec` from the command line
+Run `rspec` from the command line. This program has 100% test coverage! :)
 
 ## My approach
+
+I initially spent time diagramming out how this program would run and what the Vending Machine class would be responsible for:
+
+<div align="center">
+    <img src="Plan1.jpg" width="600px"</img>
+</div>
+
+The most challenging aspect was making sure the most sensible denominations of change were given (i.e. the fewest coins) and only if those coins were available. When I reached this part, I spent time planning how I would like this method to work:
+
+<div align="center">
+    <img src="Plan2.jpg" width="600px"</img>
+</div>
+
+I initially decided to just have one class, the Vending Machine class. This is because I believe that a vending machine object would contain products and coins and it would be able to dispense and update these variables. I didn't think another class was necessary.
+
+However, I later decided that I would like to implement an update_stock method so that new items could be added to the vending machine. I thought this would be a better in the real world if a vending machine owner were to sell this product and the stock wouldn't always be crisps. It might be vegan snacks, for example. I didn't think that the Vending Machine class should be responsible for creating these new items so I made a Product class so that new items can be inputted.
+
+One other change I made was how I stored the denominations. I was storing these initially as decimals (e.g. 0.2 for 20p, 1.0 for £1 etc) but it became unnecessarily complex when doing the calculations, which I was doing in pence. Therefore I updated the hash so that the change is now stored as pence.
+
+If I were to spend longer on this task, I would like to:
+
+* Refactor the tests to unit tests and feature tests
+* Test for more edge cases
 
 ## Author
 Jordan Roberts
