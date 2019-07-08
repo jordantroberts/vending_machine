@@ -1,6 +1,6 @@
 require_relative 'vending_machine'
 
-class Products
+class Product
 
   attr_reader :name, :price
 

@@ -38,6 +38,13 @@ So that I can keep the vending machine stocked up
 I would like to be able to reload the products and change when I want to.
 ```
 
+Extra
+```
+As a vending machine owner
+So that the selection of products doesn't get boring
+I would like to add brand new products to the machine.
+```
+
 ## Installing this program
 
 1. Clone this repo
@@ -53,7 +60,7 @@ Example of how you would run this program from your command line:
 > require './lib/vending_machine'
 > machine = Vending_Machine.new
 ```
-The machine should take an initial load of products and change:
+The machine should take an initial load of products and change. The change is stored in denominations of pence:
 
 ```
 > machine.reload_change
@@ -64,11 +71,33 @@ The machine should take an initial load of products and change:
 Vending machine is ready to go! You can purchase an item by calling the `dispense` method, passing the name of the item and the coins you insert as an argument. Here I want to buy a tube of Pringles with a 50p and a 20p.
 
 ```
-> machine.dispense("Pringles", [0.50, 0.20])
+> machine.dispense("Pringles", [50, 20])
+=> [10]
+```
+The vending machine will return the correct amount of change in the fewest amount of coins (depending which coins are available in the machine)
+
+I now have 10p left. I'll try and buy some Cheetos.
+```
+> machine.dispense("Pringles", [10])
+=> "Insufficient funds"
+```
+The vending machine tells me I don't have enough. Oh well.
+
+The vending machine knows how much change and what products it has at any time. To find out:
+
+```
+machine.items
+machine.change
 ```
 
+These can be reloaded or restocked at any time using the above `reload_change` and `restock` methods. However, if you own the vending machine and want to add some brand new products in, you can do this as follows. First, create a new instance of the Product class and give it a name and a price. Then pass it in as an argument to the vending machine's `update_stock` method, along with the quantity.
 
-
+```
+new_snack = Product.new
+new_snack.set_name("Doritos")
+new_snack.set_price(50)
+machine.update_stock(new_snack, 20)
+```
 
 ## Testing this program
 

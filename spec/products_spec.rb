@@ -1,6 +1,6 @@
 require 'products'
 
-describe Products do
+describe Product do
 
   let(:product) { described_class.new }
 
