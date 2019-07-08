@@ -54,7 +54,8 @@ describe Vending_Machine do
   describe '#give_change' do
     it 'Returns the fewest amount of coins due in change' do
       machine.reload_change
-      due = 0.7
+      machine.restock
+      machine.purchase("Pringles", [1.00, 0.10, 0.20])
       expect(machine.give_change).to eq([0.5, 0.2])
     end
   end
